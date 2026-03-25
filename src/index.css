@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg:        #0d0a12;
+  --surface:   #15111e;
+  --border:    #2a2040;
+  --purple:    #9b5de5;
+  --purple-lt: #c77dff;
+  --violet:    #5e17eb;
+  --text:      #e8e0f5;
+  --muted:     #7a6e94;
+  --input-bg:  #1c1729;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.contact-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle radial glow behind card */
+.contact-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(94,23,235,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* noise grain overlay */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* card */
+.contact-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  margin: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem 2.5rem 3rem;
+  box-shadow:
+    0 0 0 1px rgba(155,93,229,.08),
+    0 24px 80px rgba(0,0,0,.6),
+    0 0 60px rgba(94,23,235,.08);
+  animation: cardIn .6s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* header */
+.card-header { margin-bottom: 2rem; }
+
+.tag {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  color: var(--purple-lt);
+  background: rgba(155,93,229,.12);
+  border: 1px solid rgba(155,93,229,.25);
+  padding: .25rem .7rem;
+  border-radius: 100px;
+  margin-bottom: .9rem;
+}
+
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: .5rem;
+}
+
+.heading em {
+  font-style: italic;
+  color: var(--purple-lt);
+}
+
+.subtext {
+  font-size: .9rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* fields */
+.form-body { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.field { display: flex; flex-direction: column; gap: .4rem; }
+
+.field label {
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem;
+  font-weight: 300;
+  padding: .75rem 1rem;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+  resize: none;
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: #3e3556; }
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(155,93,229,.15);
+}
+
+/* button */
+.submit-btn {
+  position: relative;
+  margin-top: .5rem;
+  padding: .85rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--violet), var(--purple));
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform .15s, box-shadow .2s, background .3s;
+  box-shadow: 0 4px 24px rgba(94,23,235,.35);
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(94,23,235,.5);
+}
+
+.submit-btn:active { transform: translateY(0); }
+
+.submit-btn.sent {
+  background: linear-gradient(135deg, #1a7a4a, #2ea87a);
+  box-shadow: 0 4px 24px rgba(30,200,100,.3);
+}
+
+.btn-text { position: relative; z-index: 1; }
+
+.btn-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% -20%, rgba(255,255,255,.18), transparent 60%);
+  pointer-events: none;
+}
+
+/* accent bar bottom */
+.accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, transparent, var(--purple), var(--purple-lt), var(--purple), transparent);
+  opacity: .7;
+}
