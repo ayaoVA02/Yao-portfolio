@@ -52,6 +52,15 @@ export default function ContactForm() {
           </h1>
           <p className="subtext">
             Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
+            Drop us a message and we'll get back to you.
           </p>
         </div>
 
